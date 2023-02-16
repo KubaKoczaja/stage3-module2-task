@@ -20,11 +20,26 @@ subprojects {
 
     dependencies {
         implementation "org.springframework:spring-context:$springVersion"
+        // https://mvnrepository.com/artifact/org.springframework/spring-aop
+        implementation 'org.springframework:spring-aop:4.1.6.release'
+        // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+        implementation 'org.aspectj:aspectjweaver:1.9.19'
+
+
 
         testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
         testImplementation "com.tngtech.archunit:archunit:$archUnitVersion"
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+        testCompileOnly 'org.projectlombok:lombok:1.18.24'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+        implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
     }
     test {
         useJUnitPlatform()
