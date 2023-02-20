@@ -58,9 +58,4 @@ public class NewsModelRepositoryImpl implements BaseRepository<NewsModel, Long> 
 								.toList()
 								.contains(id);
 		}
-//		public List<NewsModel> readAllByAuthorId(Long authorId) {
-//				return readAll().stream()
-//								.filter(n -> n.getAuthorId().equals(authorId))
-//								.toList();
-//		}
 }

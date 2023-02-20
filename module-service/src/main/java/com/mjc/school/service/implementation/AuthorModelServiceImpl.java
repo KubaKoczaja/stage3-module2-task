@@ -7,6 +7,7 @@ import com.mjc.school.repository.model.dto.AuthorModelDto;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.AuthorMapper;
+import com.mjc.school.service.validator.ValidateAuthorId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class AuthorModelServiceImpl implements BaseService<AuthorModel, AuthorMo
 		}
 
 		@Override
+		@ValidateAuthorId
 		public AuthorModelDto readById(Long id) {
 				return authorMapper
 								.authorToAuthorDto(authorModelRepository
@@ -44,17 +46,15 @@ public class AuthorModelServiceImpl implements BaseService<AuthorModel, AuthorMo
 		}
 
 		@Override
+		@ValidateAuthorId
 		public boolean deleteById(Long id) {
-				if (authorModelRepository.existById(id)) {
-						List<NewsModel> newsWithConcreteAuthor = newsModelRepository.readAll()
-										.stream()
-										.filter(n -> n.getAuthorId().equals(id))
-										.toList();
-						if (!newsWithConcreteAuthor.isEmpty()) {
-								newsWithConcreteAuthor.forEach(n -> newsModelRepository.deleteById(n.getId()));
-						}
-						return authorModelRepository.deleteById(id);
+				List<NewsModel> newsWithConcreteAuthor = newsModelRepository.readAll()
+								.stream()
+								.filter(n -> n.getAuthorId().equals(id))
+								.toList();
+				if (!newsWithConcreteAuthor.isEmpty()) {
+						newsWithConcreteAuthor.forEach(n -> newsModelRepository.deleteById(n.getId()));
 				}
-				return false;
+				return authorModelRepository.deleteById(id);
 		}
 }

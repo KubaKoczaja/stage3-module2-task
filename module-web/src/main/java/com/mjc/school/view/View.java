@@ -18,6 +18,7 @@ public class View {
 		private final Scanner scanner = new Scanner(System.in);
 		private final DataSource dataSource;
 		private final BaseController<NewsModel, NewsModelDto, Long> newsModelController;
+		private final CommandExecutor commandExecutor;
 		private int mainMenu() {
 				System.out.println("""
 						Enter the number of operation:
@@ -33,36 +34,37 @@ public class View {
 				int menuOption;
 				do {
 						menuOption = mainMenu();
-						switch (menuOption) {
+						Command command = switch (menuOption) {
 								case 1 -> allNewsView();
 								case 2 -> newsByIdView();
 								case 3 -> createNewsView();
 								case 4 -> updateNewsView();
 								case 5 -> deleteByIdView();
 								case 0 -> exitView();
-								default -> {
-										System.out.println("Please try again.");
-										start();
-								}
-						}
+								default -> invalidOption();
+						};
+						commandExecutor.executeCommand(command);
 				} while(menuOption != 0);
 		}
 
-		private void allNewsView() {
+		private Command allNewsView() {
 				System.out.println("List of all news");
-				newsModelController.readAll().forEach(System.out::println);
+				return () -> newsModelController.readAll().forEach(System.out::println);
 		}
 
-		private void newsByIdView() {
+		private Command newsByIdView() {
 				System.out.println("Please enter news id:");
-				try {
-						System.out.println(newsModelController.readById(scanner.nextLong()));
-				} catch (NoSuchEntityException e) {
-						System.out.println(e.getMessage());
-						start();
-				}
+				Long id = scanner.nextLong();
+				return () -> {
+						try {
+								System.out.println(newsModelController.readById(id));
+						} catch (NoSuchEntityException e) {
+								System.out.println(e.getMessage());
+								start();
+						}
+				};
 		}
-		private void createNewsView() {
+		private Command createNewsView() {
 				scanner.nextLine();
 				System.out.println("Please enter title:");
 				String title = scanner.nextLine();
@@ -77,24 +79,29 @@ public class View {
 				newsModel.setCreateDate(LocalDateTime.now());
 				newsModel.setLastUpdateDate(LocalDateTime.now());
 				newsModel.setAuthorId(authorId);
-				try {
-						newsModelController.create(newsModel);
-				} catch (InvalidContentException e) {
-						System.out.println(e.getMessage());
-						start();
-				}
+				return () -> {
+						try {
+								newsModelController.create(newsModel);
+						} catch (InvalidContentException e) {
+								System.out.println(e.getMessage());
+								start();
+						}
+				};
 		}
-		private void deleteByIdView() {
+		private Command deleteByIdView() {
 				scanner.nextLine();
 				System.out.println("Please enter news to remove:");
-				try {
-						newsModelController.deleteById(scanner.nextLong());
-				} catch (NoSuchEntityException e) {
-						System.out.println(e.getMessage());
-						start();
-				}
+				Long id = scanner.nextLong();
+				return () -> {
+						try {
+								newsModelController.deleteById(scanner.nextLong());
+						} catch (NoSuchEntityException e) {
+								System.out.println(e.getMessage());
+								start();
+						}
+				};
 		}
-		private void updateNewsView() {
+		private Command updateNewsView() {
 				scanner.nextLine();
 				System.out.println("Please enter news to update:");
 				Long id = scanner.nextLong();
@@ -108,14 +115,22 @@ public class View {
 				newsModelToUpdate.setTitle(title);
 				newsModelToUpdate.setContent(content);
 				newsModelToUpdate.setLastUpdateDate(LocalDateTime.now());
-				try {
-						newsModelController.update(newsModelToUpdate);
-				} catch (NoSuchEntityException | InvalidContentException e) {
-						System.out.println(e.getMessage());
-						start();
-				}
+				return () -> {
+						try {
+								newsModelController.update(newsModelToUpdate);
+						} catch (InvalidContentException e) {
+								System.out.println(e.getMessage());
+								start();
+						}
+				};
 		}
-		private void exitView() {
-				System.out.println("Exit");
+		private Command exitView() {
+				return () -> System.out.println("Exit");
+		}
+		private Command invalidOption() {
+				return () -> {
+						System.out.println("Please try again.");
+						start();
+				};
 		}
 }
