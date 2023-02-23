@@ -8,6 +8,7 @@ import com.mjc.school.service.BaseService;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.AuthorMapper;
 import com.mjc.school.service.validator.ValidateAuthorId;
+import com.mjc.school.service.validator.ValidateAuthorsName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +35,14 @@ public class AuthorModelServiceImpl implements BaseService<AuthorModel, AuthorMo
 		}
 
 		@Override
+		@ValidateAuthorsName
 		public AuthorModelDto create(AuthorModel createRequest) {
 				AuthorModel savedAuthor = authorModelRepository.create(createRequest);
 				return authorMapper.authorToAuthorDto(savedAuthor);
 		}
 
 		@Override
+		@ValidateAuthorsName
 		public AuthorModelDto update(AuthorModel updateRequest) {
 				AuthorModel updatedAuthor = authorModelRepository.update(updateRequest);
 				return authorMapper.authorToAuthorDto(updatedAuthor);

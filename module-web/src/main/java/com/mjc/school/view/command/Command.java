@@ -1,4 +1,4 @@
-package com.mjc.school.view;
+package com.mjc.school.view.command;
 
 @FunctionalInterface
 public interface Command {
