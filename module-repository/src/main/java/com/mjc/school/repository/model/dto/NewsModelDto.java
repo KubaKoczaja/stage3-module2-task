@@ -2,12 +2,12 @@ package com.mjc.school.repository.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class NewsModelDto implements BaseEntityDto<Long> {
 		private Long id;

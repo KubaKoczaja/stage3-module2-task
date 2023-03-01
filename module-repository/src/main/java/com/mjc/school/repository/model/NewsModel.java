@@ -1,7 +1,8 @@
 package com.mjc.school.repository.model;
 
-import lombok.*;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 

@@ -1,5 +1,6 @@
 package com.mjc.school.view.command;
 
+import com.mjc.school.view.command.annotation.CommandBody;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,6 +26,6 @@ public class CommandFactory {
 				} catch (IllegalAccessException | InvocationTargetException e) {
 						System.out.println(e.getMessage());
 				}
-				return () -> System.out.println("Something went wrong");
+				return () -> System.out.println("Invalid option number!");
 		}
 }

@@ -18,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Validator {
 		private final DataSource dataSource;
+		private static final String NO_AUTHOR_ID = "No such author id!";
 		@Before("@annotation(ValidateNewsId)")
 		public void validateIfNewsIdExists(JoinPoint joinPoint) throws NoSuchEntityException{
 				Long id = (Long) joinPoint.getArgs()[0];
@@ -31,7 +32,7 @@ public class Validator {
 				Long id = (Long) joinPoint.getArgs()[0];
 				List<AuthorModel> authorModelList = dataSource.parseAuthorFromFile();
 				if (authorModelList.stream().map(AuthorModel::getId).noneMatch(i -> i.equals(id))) {
-						throw new NoSuchEntityException("No such id!");
+						throw new NoSuchEntityException(NO_AUTHOR_ID);
 				}
 		}
 		@Before("@annotation(ValidateNewsContent)")
@@ -45,12 +46,16 @@ public class Validator {
 						throw new InvalidContentException("Title must be between 5 and 255 characters long!");
 				}
 				if (authorModelList.stream().map(AuthorModel::getId).noneMatch(i -> i.equals(newsModel.getAuthorId()))) {
-						throw new NoSuchEntityException("No such author id!");
+						throw new NoSuchEntityException(NO_AUTHOR_ID);
 				}
 		}
-		@Before("@annotation(ValidateAuthorsName)")
+		@Before("@annotation(ValidateAuthorsDetails)")
 		public void validateAuthorsName(JoinPoint joinPoint) {
 				AuthorModel authorModel = (AuthorModel) joinPoint.getArgs()[0];
+				List<AuthorModel> authorModelList = dataSource.parseAuthorFromFile();
+				if (authorModelList.stream().map(AuthorModel::getId).noneMatch(i -> i.equals(authorModel.getId()))) {
+						throw new NoSuchEntityException(NO_AUTHOR_ID);
+				}
 				if (authorModel.getName().isBlank()) {
 						throw new InvalidContentException("Author's name can't be empty!");
 				}

@@ -33,6 +33,7 @@ public class View {
 						9 - Remove news by id.
 						10 - Remove author by id.
 						0 - Exit.""");
+				scanner.reset();
 				return scanner.nextInt();
 		}
 		public void start() {

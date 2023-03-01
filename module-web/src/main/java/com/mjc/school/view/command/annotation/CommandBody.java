@@ -1,4 +1,4 @@
-package com.mjc.school.service.validator;
+package com.mjc.school.view.command.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface ValidateAuthorsName {
+public @interface CommandBody {
+		int id();
 }
