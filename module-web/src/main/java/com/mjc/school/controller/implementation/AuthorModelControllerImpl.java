@@ -1,8 +1,8 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.dto.AuthorModelDto;
+import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.dto.AuthorModelDto;
 import com.mjc.school.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

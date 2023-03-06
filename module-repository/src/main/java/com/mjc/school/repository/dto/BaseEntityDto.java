@@ -1,4 +1,4 @@
-package com.mjc.school.repository.model.dto;
+package com.mjc.school.repository.dto;
 
 public interface BaseEntityDto<K> {
 		K getId();

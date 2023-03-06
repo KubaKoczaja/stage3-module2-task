@@ -1,4 +1,4 @@
-package com.mjc.school.repository.model;
+package com.mjc.school.repository.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AuthorModel implements BaseEntity<Long>{
+public class AuthorModelDto implements BaseEntityDto<Long> {
 		private Long id;
 		private String name;
 		private LocalDateTime createDate;

@@ -1,7 +1,7 @@
 package com.mjc.school.service.mapper;
 
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.dto.AuthorModelDto;
+import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.dto.AuthorModelDto;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

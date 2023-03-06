@@ -1,8 +1,8 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.repository.model.dto.NewsModelDto;
+import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.dto.NewsModelDto;
 import com.mjc.school.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

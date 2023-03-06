@@ -1,10 +1,10 @@
 package com.mjc.school.view.command;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.repository.model.dto.AuthorModelDto;
-import com.mjc.school.repository.model.dto.NewsModelDto;
+import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.dto.AuthorModelDto;
+import com.mjc.school.repository.dto.NewsModelDto;
 import com.mjc.school.view.command.annotation.CommandBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

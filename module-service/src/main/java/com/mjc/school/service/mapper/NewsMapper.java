@@ -1,7 +1,7 @@
 package com.mjc.school.service.mapper;
 
-import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.repository.model.dto.NewsModelDto;
+import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.dto.NewsModelDto;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

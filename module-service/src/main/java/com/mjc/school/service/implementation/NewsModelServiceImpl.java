@@ -1,8 +1,8 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.repository.model.dto.NewsModelDto;
+import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.dto.NewsModelDto;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.NewsMapper;

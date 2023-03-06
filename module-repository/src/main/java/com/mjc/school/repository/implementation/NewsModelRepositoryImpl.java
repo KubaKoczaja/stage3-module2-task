@@ -2,7 +2,7 @@ package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.model.NewsModel;
+import com.mjc.school.repository.NewsModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

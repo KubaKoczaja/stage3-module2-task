@@ -1,8 +1,8 @@
 package com.mjc.school.view;
 
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.NewsModel;
+import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.NewsModel;
 import com.mjc.school.view.command.Command;
 import com.mjc.school.view.command.CommandExecutor;
 import com.mjc.school.view.command.CommandFactory;

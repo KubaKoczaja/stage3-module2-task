@@ -1,7 +1,5 @@
 package com.mjc.school.repository;
 
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.NewsModel;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 

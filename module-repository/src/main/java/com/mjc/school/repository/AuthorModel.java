@@ -1,4 +1,4 @@
-package com.mjc.school.repository.model.dto;
+package com.mjc.school.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class NewsModelDto implements BaseEntityDto<Long> {
+public class AuthorModel implements BaseEntity<Long>{
 		private Long id;
-		private String title;
-		private String content;
+		private String name;
 		private LocalDateTime createDate;
 		private LocalDateTime lastUpdateDate;
-		private Long authorId;
 }

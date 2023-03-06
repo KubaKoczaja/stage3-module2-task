@@ -1,8 +1,8 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.dto.AuthorModelDto;
+import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.dto.AuthorModelDto;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.AuthorMapper;
