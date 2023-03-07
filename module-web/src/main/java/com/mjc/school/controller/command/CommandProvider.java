@@ -1,17 +1,18 @@
 package com.mjc.school.controller.command;
 
-import com.mjc.school.controller.BaseController;
+import com.mjc.school.controller.AuthorModelController;
+import com.mjc.school.controller.NewsModelController;
+import com.mjc.school.controller.command.annotation.CommandBody;
 import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.dto.NewsModelDto;
-import com.mjc.school.controller.command.annotation.CommandBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class CommandProvider {
-		private final BaseController<NewsModelDto, NewsModelDto, Long> newsModelControllerImpl;
-		private final BaseController<AuthorModelDto, AuthorModelDto, Long> authorModelControllerImpl;
+		private final NewsModelController newsModelControllerImpl;
+		private final AuthorModelController authorModelControllerImpl;
 
 		@CommandBody(id = 1)
 		public Command readAllNews() {

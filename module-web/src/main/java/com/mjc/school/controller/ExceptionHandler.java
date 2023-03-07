@@ -11,14 +11,15 @@ import org.springframework.stereotype.Component;
 @Aspect
 @RequiredArgsConstructor
 public class ExceptionHandler {
-		@Around("execution(* com.mjc.school.controller.command.CommandExecutor.*(..))")
+		private final View view;
+		@Around("@annotation(com.mjc.school.controller.command.annotation.CommandHandler)")
 		public Object handleException(ProceedingJoinPoint joinPoint) throws Throwable {
 				try {
-						joinPoint.proceed();
+						return joinPoint.proceed();
 				} catch (CustomException e) {
 						System.out.println(e.getMessage());
 				}
-				return  null;
+				return "Please try again";
 		}
 }
 
