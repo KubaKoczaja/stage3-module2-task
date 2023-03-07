@@ -1,6 +1,6 @@
-package com.mjc.school.view.command;
+package com.mjc.school.controller.command;
 
-import com.mjc.school.view.command.annotation.CommandBody;
+import com.mjc.school.controller.command.annotation.CommandBody;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;

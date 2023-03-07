@@ -1,4 +1,4 @@
-package com.mjc.school.view;
+package com.mjc.school.controller;
 
 import com.mjc.school.service.exception.CustomException;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @RequiredArgsConstructor
 public class ExceptionHandler {
-		@Around("execution(* com.mjc.school.view.command.CommandExecutor.*(..))")
+		@Around("execution(* com.mjc.school.controller.command.CommandExecutor.*(..))")
 		public Object handleException(ProceedingJoinPoint joinPoint) throws Throwable {
 				try {
 						joinPoint.proceed();

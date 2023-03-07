@@ -1,12 +1,12 @@
-package com.mjc.school.view;
+package com.mjc.school.controller;
 
 import com.mjc.school.service.AuthorModelService;
 import com.mjc.school.service.NewsModelService;
 import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.dto.NewsModelDto;
-import com.mjc.school.view.command.Command;
-import com.mjc.school.view.command.CommandExecutor;
-import com.mjc.school.view.command.CommandFactory;
+import com.mjc.school.controller.command.Command;
+import com.mjc.school.controller.command.CommandExecutor;
+import com.mjc.school.controller.command.CommandFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
