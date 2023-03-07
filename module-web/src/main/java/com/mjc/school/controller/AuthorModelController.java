@@ -2,5 +2,16 @@ package com.mjc.school.controller;
 
 import com.mjc.school.service.dto.AuthorModelDto;
 
-public interface AuthorModelController extends BaseController<AuthorModelDto, AuthorModelDto, Long>{
+import java.util.List;
+
+public interface AuthorModelController extends BaseController<AuthorModelDto, AuthorModelDto, Long> {
+		List<AuthorModelDto> readAll();
+
+		AuthorModelDto readById(Long id);
+
+		AuthorModelDto create(AuthorModelDto createRequest);
+
+		AuthorModelDto update(AuthorModelDto updateRequest);
+
+		boolean deleteById(Long id);
 }
