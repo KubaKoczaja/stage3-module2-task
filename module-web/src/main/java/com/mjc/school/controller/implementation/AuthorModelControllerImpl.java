@@ -1,9 +1,8 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.repository.AuthorModel;
-import com.mjc.school.repository.dto.AuthorModelDto;
-import com.mjc.school.service.BaseService;
+import com.mjc.school.service.AuthorModelService;
+import com.mjc.school.service.dto.AuthorModelDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -11,8 +10,8 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class AuthorModelControllerImpl implements BaseController<AuthorModel, AuthorModelDto, Long> {
-		private final BaseService<AuthorModel, AuthorModelDto, Long> authorModelService;
+public class AuthorModelControllerImpl implements BaseController<AuthorModelDto, AuthorModelDto, Long> {
+		private final AuthorModelService authorModelService;
 		@Override
 		public List<AuthorModelDto> readAll() {
 				return authorModelService.readAll();
@@ -24,12 +23,14 @@ public class AuthorModelControllerImpl implements BaseController<AuthorModel, Au
 		}
 
 		@Override
-		public AuthorModelDto create(AuthorModel createRequest) {
+		public AuthorModelDto create(AuthorModelDto createRequest) {
 				return authorModelService.create(createRequest);
 		}
 
 		@Override
-		public AuthorModelDto update(AuthorModel updateRequest) {
+		public AuthorModelDto update(AuthorModelDto updateRequest) {
+				AuthorModelDto authorReadById = authorModelService.readById(updateRequest.getId());
+				updateRequest.setCreateDate(authorReadById.getCreateDate());
 				return authorModelService.update(updateRequest);
 		}
 

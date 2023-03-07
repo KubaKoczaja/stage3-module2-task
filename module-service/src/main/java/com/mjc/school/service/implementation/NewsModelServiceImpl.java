@@ -2,8 +2,8 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.NewsModel;
-import com.mjc.school.repository.dto.NewsModelDto;
-import com.mjc.school.service.BaseService;
+import com.mjc.school.service.NewsModelService;
+import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.NewsMapper;
 import com.mjc.school.service.validator.ValidateNewsContent;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NewsModelServiceImpl implements BaseService<NewsModel, NewsModelDto, Long> {
+public class NewsModelServiceImpl implements NewsModelService {
 		private final BaseRepository<NewsModel, Long> newsModelRepository;
 		private final NewsMapper newsMapper;
 
@@ -35,16 +35,16 @@ public class NewsModelServiceImpl implements BaseService<NewsModel, NewsModelDto
 
 		@Override
 		@ValidateNewsContent
-		public NewsModelDto create(NewsModel createRequest) {
-				NewsModel savedNews = newsModelRepository.create(createRequest);
-				return newsMapper.newsToNewsDTO(savedNews);
+		public NewsModelDto create(NewsModelDto createRequest) {
+				NewsModel savedNews = newsMapper.newsDTOToNews(createRequest);
+				return newsMapper.newsToNewsDTO(newsModelRepository.create(savedNews));
 		}
 
 		@Override
 		@ValidateNewsContent
-		public NewsModelDto update(NewsModel updateRequest) {
-				NewsModel updatedNews = newsModelRepository.update(updateRequest);
-				return newsMapper.newsToNewsDTO(updatedNews);
+		public NewsModelDto update(NewsModelDto updateRequest) {
+				NewsModel updatedNews = newsMapper.newsDTOToNews(updateRequest);
+				return newsMapper.newsToNewsDTO(newsModelRepository.update(updatedNews));
 		}
 
 		@Override

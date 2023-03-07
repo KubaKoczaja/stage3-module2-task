@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.implementation.NewsModelRepositoryImpl;
 import com.mjc.school.repository.NewsModel;
-import com.mjc.school.repository.dto.NewsModelDto;
+import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.NewsMapper;
 import org.junit.jupiter.api.Test;
@@ -55,18 +55,20 @@ class NewsModelServiceImplTest {
 
 		@Test
 		void shouldReturnAddedObjectIfValuesAreCorrect() {
-				NewsModel newsModelToCreate = new NewsModel(1L, "testTitle", "testContent", LocalDateTime.now(), LocalDateTime.now(), 1L);
-				when(newsModelRepository.create(any(NewsModel.class))).thenReturn(new NewsModel());
+				NewsModelDto newsModelToCreate = new NewsModelDto(1L, "testTitle", "testContent", LocalDateTime.now(), LocalDateTime.now(), 1L);
+				lenient().when(newsMapper.newsDTOToNews(any(NewsModelDto.class))).thenReturn(new NewsModel());
+				lenient().when(newsModelRepository.create(any(NewsModel.class))).thenReturn(new NewsModel());
 				NewsModelDto savedNewsDto = new NewsModelDto(1L, "testTitle", "testContent", LocalDateTime.now(), LocalDateTime.now(), 1L);
-				when(newsMapper.newsToNewsDTO(any(NewsModel.class))).thenReturn(savedNewsDto);
+				lenient().when(newsMapper.newsToNewsDTO(any(NewsModel.class))).thenReturn(savedNewsDto);
 				assertEquals(savedNewsDto, newsModelService.create(newsModelToCreate));
 		}
 
 		@Test
 		void shouldUpdateNewsWithGivenIdWhenValuesOfTitleAndContentAreCorrect() {
-				NewsModel newsModelToUpdate = new NewsModel(1L, "new_title", "new_content", LocalDateTime.now(), LocalDateTime.now(), 1L);
+				NewsModelDto newsModelToUpdate = new NewsModelDto(1L, "new_title", "new_content", LocalDateTime.now(), LocalDateTime.now(), 1L);
 				NewsModelDto updatedNewsDto = new NewsModelDto(1L, "testTitle", "testContent", LocalDateTime.now(), LocalDateTime.now(), 1L);
-				when(newsModelRepository.update(any(NewsModel.class))).thenReturn(newsModelToUpdate);
+				lenient().when(newsMapper.newsDTOToNews(any(NewsModelDto.class))).thenReturn(new NewsModel());
+				lenient().when(newsModelRepository.update(any(NewsModel.class))).thenReturn(new NewsModel());
 				lenient().when(newsMapper.newsToNewsDTO(any(NewsModel.class))).thenReturn(updatedNewsDto);
 				assertEquals(updatedNewsDto, newsModelService.update(newsModelToUpdate));
 		}

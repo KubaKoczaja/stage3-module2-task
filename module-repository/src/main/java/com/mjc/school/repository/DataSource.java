@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static com.mjc.school.repository.FilePathUtils.DATA_AUTHOR_CSV;
-import static com.mjc.school.repository.FilePathUtils.DATA_NEWS_CSV;
-
 @Component
 @NoArgsConstructor
 public class DataSource {
+		public static final String DATA_NEWS_CSV = "module-repository/src/main/resources/data_news.csv";
 
+		public static final String DATA_AUTHOR_CSV = "module-repository/src/main/resources/data_authors.csv";
 		public List<NewsModel> parseNewsFromFile() {
 				List<NewsModel> list = new ArrayList<>();
 				try (BufferedReader fileReader = new BufferedReader(new FileReader(DATA_NEWS_CSV))){

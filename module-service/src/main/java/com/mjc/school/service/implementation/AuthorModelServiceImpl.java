@@ -1,9 +1,9 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.AuthorModel;
-import com.mjc.school.repository.dto.AuthorModelDto;
-import com.mjc.school.service.BaseService;
+import com.mjc.school.repository.BaseRepository;
+import com.mjc.school.service.AuthorModelService;
+import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.AuthorMapper;
 import com.mjc.school.service.validator.ValidateAuthorId;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorModelServiceImpl implements BaseService<AuthorModel, AuthorModelDto, Long> {
+public class AuthorModelServiceImpl implements AuthorModelService {
 		private final BaseRepository<AuthorModel, Long> authorModelRepository;
 		private final AuthorMapper authorMapper;
 		@Override
@@ -33,16 +33,16 @@ public class AuthorModelServiceImpl implements BaseService<AuthorModel, AuthorMo
 
 		@Override
 		@ValidateAuthorsDetails
-		public AuthorModelDto create(AuthorModel createRequest) {
-				AuthorModel savedAuthor = authorModelRepository.create(createRequest);
-				return authorMapper.authorToAuthorDto(savedAuthor);
+		public AuthorModelDto create(AuthorModelDto createRequest) {
+				AuthorModel savedAuthor = authorMapper.authorDtoToAuthor(createRequest);
+				return authorMapper.authorToAuthorDto(authorModelRepository.create(savedAuthor));
 		}
 
 		@Override
 		@ValidateAuthorsDetails
-		public AuthorModelDto update(AuthorModel updateRequest) {
-				AuthorModel updatedAuthor = authorModelRepository.update(updateRequest);
-				return authorMapper.authorToAuthorDto(updatedAuthor);
+		public AuthorModelDto update(AuthorModelDto updateRequest) {
+				AuthorModel updatedAuthor = authorMapper.authorDtoToAuthor(updateRequest);
+				return authorMapper.authorToAuthorDto(authorModelRepository.update(updatedAuthor));
 		}
 
 		@Override

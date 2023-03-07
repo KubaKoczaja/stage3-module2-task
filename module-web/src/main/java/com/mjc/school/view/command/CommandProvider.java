@@ -1,10 +1,8 @@
 package com.mjc.school.view.command;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.repository.AuthorModel;
-import com.mjc.school.repository.NewsModel;
-import com.mjc.school.repository.dto.AuthorModelDto;
-import com.mjc.school.repository.dto.NewsModelDto;
+import com.mjc.school.service.dto.AuthorModelDto;
+import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.view.command.annotation.CommandBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CommandProvider {
-		private final BaseController<NewsModel, NewsModelDto, Long> newsModelControllerImpl;
-		private final BaseController<AuthorModel, AuthorModelDto, Long> authorModelControllerImpl;
+		private final BaseController<NewsModelDto, NewsModelDto, Long> newsModelControllerImpl;
+		private final BaseController<AuthorModelDto, AuthorModelDto, Long> authorModelControllerImpl;
 
 		@CommandBody(id = 1)
 		public Command readAllNews() {
@@ -32,19 +30,19 @@ public class CommandProvider {
 				return () -> System.out.println(authorModelControllerImpl.readById(id));
 		}
 		@CommandBody(id = 5)
-		public Command createNews(NewsModel newsModel) {
+		public Command createNews(NewsModelDto newsModel) {
 				return () -> newsModelControllerImpl.create(newsModel);
 		}
 		@CommandBody(id = 6)
-		public Command createAuthor(AuthorModel authorModel) {
+		public Command createAuthor(AuthorModelDto authorModel) {
 				return () -> authorModelControllerImpl.create(authorModel);
 		}
 		@CommandBody(id = 7)
-		public Command updateNews(NewsModel newsModel) {
+		public Command updateNews(NewsModelDto newsModel) {
 				return () -> newsModelControllerImpl.update(newsModel);
 		}
 		@CommandBody(id = 8)
-		public Command updateAuthor(AuthorModel authorModel) {
+		public Command updateAuthor(AuthorModelDto authorModel) {
 				return () -> authorModelControllerImpl.update(authorModel);
 		}
 		@CommandBody(id = 9)

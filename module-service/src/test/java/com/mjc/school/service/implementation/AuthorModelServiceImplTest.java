@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.implementation.AuthorModelRepositoryImpl;
 import com.mjc.school.repository.AuthorModel;
-import com.mjc.school.repository.dto.AuthorModelDto;
+import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.mapper.AuthorMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,7 +49,8 @@ class AuthorModelServiceImplTest {
 
 		@Test
 		void shouldReturnAddedObjectIfValuesAreCorrect() {
-				AuthorModel authorModelToCreate = new AuthorModel(1L, "test", LocalDateTime.now(), LocalDateTime.now());
+				AuthorModelDto authorModelToCreate = new AuthorModelDto(1L, "test", LocalDateTime.now(), LocalDateTime.now());
+				when(authorMapper.authorDtoToAuthor(any(AuthorModelDto.class))).thenReturn(new AuthorModel());
 				when(authorModelRepository.create(any(AuthorModel.class))).thenReturn(new AuthorModel());
 				AuthorModelDto savedAuthorDto = new AuthorModelDto(1L, "test", LocalDateTime.now(), LocalDateTime.now());
 				when(authorMapper.authorToAuthorDto(any(AuthorModel.class))).thenReturn(savedAuthorDto);
@@ -58,9 +59,10 @@ class AuthorModelServiceImplTest {
 
 		@Test
 		void shouldUpdateNewsWithGivenIdWhenValuesOfTitleAndContentAreCorrect() {
-				AuthorModel authorModelToUpdate = new AuthorModel(1L, "test", LocalDateTime.now(), LocalDateTime.now());
+				AuthorModelDto authorModelToUpdate = new AuthorModelDto(1L, "test", LocalDateTime.now(), LocalDateTime.now());
 				AuthorModelDto updatedAuthorDto = new AuthorModelDto(1L, "test", LocalDateTime.now(), LocalDateTime.now());
-				when(authorModelRepository.update(any(AuthorModel.class))).thenReturn(authorModelToUpdate);
+				when(authorMapper.authorDtoToAuthor(any(AuthorModelDto.class))).thenReturn(new AuthorModel());
+				when(authorModelRepository.update(any(AuthorModel.class))).thenReturn(new AuthorModel());
 				lenient().when(authorMapper.authorToAuthorDto(any(AuthorModel.class))).thenReturn(updatedAuthorDto);
 				assertEquals(updatedAuthorDto, authorModelService.update(authorModelToUpdate));
 		}

@@ -1,4 +1,4 @@
-package com.mjc.school.repository;
+package com.mjc.school.view;
 
 import java.io.*;
 import java.time.Duration;
@@ -9,21 +9,23 @@ import java.util.List;
 import java.util.StringJoiner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.mjc.school.repository.FilePathUtils.DATA_AUTHOR_CSV;
-import static com.mjc.school.repository.FilePathUtils.DATA_NEWS_CSV;
-
 public class DataGenerator {
 
 		private DataGenerator() {		}
+		public static final String DATA_NEWS_CSV = "module-repository/src/main/resources/data_news.csv";
+		public static final String DATA_AUTHOR_CSV = "module-repository/src/main/resources/data_authors.csv";
+		public static final String CONTENT_TXT = "module-repository/src/main/resources/content";
+		public static final String NEWS_TXT = "module-repository/src/main/resources/news";
+		public static final String AUTHORS_TXT = "module-repository/src/main/resources/authors";
 
 		public static void generateData() {
 				List<String> listContent = new ArrayList<>();
 				List<String> listTitle = new ArrayList<>();
 				List<String> listAuthorName = new ArrayList<>();
 
-				try (BufferedReader fileReaderContent = new BufferedReader(new FileReader(FilePathUtils.CONTENT_TXT));
-						 BufferedReader fileReaderTitle = new BufferedReader(new FileReader(FilePathUtils.NEWS_TXT));
-						 BufferedReader fileReaderName = new BufferedReader(new FileReader(FilePathUtils.AUTHORS_TXT))) {
+				try (BufferedReader fileReaderContent = new BufferedReader(new FileReader(CONTENT_TXT));
+						 BufferedReader fileReaderTitle = new BufferedReader(new FileReader(NEWS_TXT));
+						 BufferedReader fileReaderName = new BufferedReader(new FileReader(AUTHORS_TXT))) {
 						listContent = fileReaderContent.lines().toList();
 						listTitle = fileReaderTitle.lines().toList();
 						listAuthorName = fileReaderName.lines().toList();

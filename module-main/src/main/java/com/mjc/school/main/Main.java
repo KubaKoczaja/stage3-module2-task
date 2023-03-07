@@ -1,6 +1,6 @@
 package com.mjc.school.main;
 
-import com.mjc.school.repository.DataGenerator;
+import com.mjc.school.view.DataGenerator;
 import com.mjc.school.view.View;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

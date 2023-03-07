@@ -1,8 +1,9 @@
 package com.mjc.school.view;
 
-import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.AuthorModel;
-import com.mjc.school.repository.NewsModel;
+import com.mjc.school.service.AuthorModelService;
+import com.mjc.school.service.NewsModelService;
+import com.mjc.school.service.dto.AuthorModelDto;
+import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.view.command.Command;
 import com.mjc.school.view.command.CommandExecutor;
 import com.mjc.school.view.command.CommandFactory;
@@ -16,7 +17,8 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 public class View {
 		private final Scanner scanner = new Scanner(System.in);
-		private final DataSource dataSource;
+		private final NewsModelService newsModelService;
+		private final AuthorModelService authorModelService;
 		private final CommandExecutor commandExecutor;
 		private final CommandFactory commandFactory;
 		private int mainMenu() {
@@ -88,8 +90,8 @@ public class View {
 				String content = scanner.nextLine();
 				System.out.println("Please enter Author Id:");
 				Long authorId = scanner.nextLong();
-				NewsModel newsModel = new NewsModel();
-				newsModel.setId((long) dataSource.parseNewsFromFile().size());
+				NewsModelDto newsModel = new NewsModelDto();
+				newsModel.setId((long) newsModelService.readAll().size());
 				newsModel.setTitle(title);
 				newsModel.setContent(content);
 				newsModel.setCreateDate(LocalDateTime.now());
@@ -102,8 +104,8 @@ public class View {
 				scanner.nextLine();
 				System.out.println("Please enter author's details:");
 				String name = scanner.nextLine();
-				AuthorModel authorModel = new AuthorModel();
-				authorModel.setId((long) dataSource.parseNewsFromFile().size());
+				AuthorModelDto authorModel = new AuthorModelDto();
+				authorModel.setId((long) authorModelService.readAll().size());
 				authorModel.setName(name);
 				authorModel.setCreateDate(LocalDateTime.now());
 				authorModel.setLastUpdateDate(LocalDateTime.now());
@@ -131,7 +133,7 @@ public class View {
 				System.out.println("Please enter new name:");
 				scanner.nextLine();
 				String name = scanner.nextLine();
-				AuthorModel authorModelToUpdate = new AuthorModel();
+				AuthorModelDto authorModelToUpdate = new AuthorModelDto();
 				authorModelToUpdate.setId(id);
 				authorModelToUpdate.setName(name);
 				authorModelToUpdate.setLastUpdateDate(LocalDateTime.now());
@@ -147,7 +149,7 @@ public class View {
 				String title = scanner.nextLine();
 				System.out.println("Please enter new content:");
 				String content = scanner.nextLine();
-				NewsModel newsModelToUpdate = new NewsModel();
+				NewsModelDto newsModelToUpdate = new NewsModelDto();
 				newsModelToUpdate.setId(id);
 				newsModelToUpdate.setTitle(title);
 				newsModelToUpdate.setContent(content);

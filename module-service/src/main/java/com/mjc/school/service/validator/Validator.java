@@ -1,8 +1,10 @@
 package com.mjc.school.service.validator;
 
-import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.AuthorModel;
+import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.NewsModel;
+import com.mjc.school.service.dto.AuthorModelDto;
+import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.service.exception.InvalidContentException;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +39,7 @@ public class Validator {
 		}
 		@Before("@annotation(ValidateNewsContent)")
 		public void validateNewsContent(JoinPoint joinPoint) {
-				NewsModel newsModel = (NewsModel) joinPoint.getArgs()[0];
+				NewsModelDto newsModel = (NewsModelDto) joinPoint.getArgs()[0];
 				List<AuthorModel> authorModelList = dataSource.parseAuthorFromFile();
 				if (newsModel.getTitle().length() < 5 || newsModel.getTitle().length() > 30) {
 						throw new InvalidContentException("Title must be between 5 and 30 characters long!");
@@ -51,11 +53,7 @@ public class Validator {
 		}
 		@Before("@annotation(ValidateAuthorsDetails)")
 		public void validateAuthorsName(JoinPoint joinPoint) {
-				AuthorModel authorModel = (AuthorModel) joinPoint.getArgs()[0];
-				List<AuthorModel> authorModelList = dataSource.parseAuthorFromFile();
-				if (authorModelList.stream().map(AuthorModel::getId).noneMatch(i -> i.equals(authorModel.getId()))) {
-						throw new NoSuchEntityException(NO_AUTHOR_ID);
-				}
+				AuthorModelDto authorModel = (AuthorModelDto) joinPoint.getArgs()[0];
 				if (authorModel.getName().isBlank()) {
 						throw new InvalidContentException("Author's name can't be empty!");
 				}
