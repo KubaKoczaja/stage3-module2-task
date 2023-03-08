@@ -1,7 +1,7 @@
 package com.mjc.school.controller;
 
-import com.mjc.school.service.AuthorModelService;
-import com.mjc.school.service.NewsModelService;
+import com.mjc.school.service.AuthorService;
+import com.mjc.school.service.NewsService;
 import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.controller.command.Command;
@@ -17,8 +17,8 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 public class View {
 		private final Scanner scanner = new Scanner(System.in);
-		private final NewsModelService newsModelService;
-		private final AuthorModelService authorModelService;
+		private final NewsService newsService;
+		private final AuthorService authorService;
 		private final CommandExecutor commandExecutor;
 		private final CommandFactory commandFactory;
 		private int mainMenu() {
@@ -56,7 +56,11 @@ public class View {
 								case 0 -> exitView();
 								default -> invalidOption();
 						};
-						commandExecutor.executeCommand(command);
+						try {
+								commandExecutor.executeCommand(command);
+						} catch (RuntimeException e) {
+								menuOption = -1;
+						}
 				} while(menuOption != 0);
 		}
 
@@ -91,7 +95,7 @@ public class View {
 				System.out.println("Please enter Author Id:");
 				Long authorId = scanner.nextLong();
 				NewsModelDto newsModel = new NewsModelDto();
-				newsModel.setId((long) newsModelService.readAll().size());
+				newsModel.setId((long) newsService.readAll().size());
 				newsModel.setTitle(title);
 				newsModel.setContent(content);
 				newsModel.setCreateDate(LocalDateTime.now());
@@ -105,7 +109,7 @@ public class View {
 				System.out.println("Please enter author's details:");
 				String name = scanner.nextLine();
 				AuthorModelDto authorModel = new AuthorModelDto();
-				authorModel.setId((long) authorModelService.readAll().size());
+				authorModel.setId((long) authorService.readAll().size());
 				authorModel.setName(name);
 				authorModel.setCreateDate(LocalDateTime.now());
 				authorModel.setLastUpdateDate(LocalDateTime.now());

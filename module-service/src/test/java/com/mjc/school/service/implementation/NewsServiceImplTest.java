@@ -1,6 +1,6 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.implementation.NewsModelRepositoryImpl;
+import com.mjc.school.repository.implementation.NewsRepositoryImpl;
 import com.mjc.school.repository.NewsModel;
 import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
@@ -22,11 +22,11 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class NewsModelServiceImplTest {
+class NewsServiceImplTest {
 		@InjectMocks
-		private NewsModelServiceImpl newsModelService;
+		private NewsServiceImpl newsModelService;
 		@Mock
-		private NewsModelRepositoryImpl newsModelRepository;
+		private NewsRepositoryImpl newsModelRepository;
 		@Mock
 		private NewsMapper newsMapper;
 

@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.AuthorModel;
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.service.AuthorModelService;
+import com.mjc.school.service.AuthorService;
 import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.AuthorMapper;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorModelServiceImpl implements AuthorModelService {
+public class AuthorServiceImpl implements AuthorService {
 		private final BaseRepository<AuthorModel, Long> authorModelRepository;
 		private final AuthorMapper authorMapper;
 		@Override

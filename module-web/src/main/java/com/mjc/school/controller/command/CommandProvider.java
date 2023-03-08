@@ -1,7 +1,7 @@
 package com.mjc.school.controller.command;
 
-import com.mjc.school.controller.AuthorModelController;
-import com.mjc.school.controller.NewsModelController;
+import com.mjc.school.controller.AuthorController;
+import com.mjc.school.controller.NewsController;
 import com.mjc.school.controller.command.annotation.CommandBody;
 import com.mjc.school.service.dto.AuthorModelDto;
 import com.mjc.school.service.dto.NewsModelDto;
@@ -11,48 +11,48 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CommandProvider {
-		private final NewsModelController newsModelControllerImpl;
-		private final AuthorModelController authorModelControllerImpl;
+		private final NewsController newsControllerImpl;
+		private final AuthorController authorControllerImpl;
 
 		@CommandBody(id = 1)
 		public Command readAllNews() {
-				return () -> newsModelControllerImpl.readAll().forEach(System.out::println);
+				return () -> newsControllerImpl.readAll().forEach(System.out::println);
 		}
 		@CommandBody(id = 2)
 		public Command readAllAuthors() {
-				return () -> authorModelControllerImpl.readAll().forEach(System.out::println);
+				return () -> authorControllerImpl.readAll().forEach(System.out::println);
 		}
 		@CommandBody(id = 3)
 		public Command readNewsById(Long id) {
-				return () -> System.out.println(newsModelControllerImpl.readById(id));
+				return () -> System.out.println(newsControllerImpl.readById(id));
 		}
 		@CommandBody(id = 4)
 		public Command readAuthorById(Long id) {
-				return () -> System.out.println(authorModelControllerImpl.readById(id));
+				return () -> System.out.println(authorControllerImpl.readById(id));
 		}
 		@CommandBody(id = 5)
 		public Command createNews(NewsModelDto newsModel) {
-				return () -> newsModelControllerImpl.create(newsModel);
+				return () -> newsControllerImpl.create(newsModel);
 		}
 		@CommandBody(id = 6)
 		public Command createAuthor(AuthorModelDto authorModel) {
-				return () -> authorModelControllerImpl.create(authorModel);
+				return () -> authorControllerImpl.create(authorModel);
 		}
 		@CommandBody(id = 7)
 		public Command updateNews(NewsModelDto newsModel) {
-				return () -> newsModelControllerImpl.update(newsModel);
+				return () -> newsControllerImpl.update(newsModel);
 		}
 		@CommandBody(id = 8)
 		public Command updateAuthor(AuthorModelDto authorModel) {
-				return () -> authorModelControllerImpl.update(authorModel);
+				return () -> authorControllerImpl.update(authorModel);
 		}
 		@CommandBody(id = 9)
 		public Command deleteNewsById(Long id) {
-				return () -> newsModelControllerImpl.deleteById(id);
+				return () -> newsControllerImpl.deleteById(id);
 		}
 		@CommandBody(id = 10)
 		public Command deleteAuthorById(Long id) {
-				return () -> authorModelControllerImpl.deleteById(id);
+				return () -> authorControllerImpl.deleteById(id);
 		}
 		@CommandBody(id = 11)
 		public Command exit() {

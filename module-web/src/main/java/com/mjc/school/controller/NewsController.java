@@ -1,10 +1,10 @@
-package com.mjc.school.service;
+package com.mjc.school.controller;
 
 import com.mjc.school.service.dto.NewsModelDto;
 
 import java.util.List;
 
-public interface NewsModelService extends BaseService<NewsModelDto, NewsModelDto, Long> {
+public interface NewsController extends BaseController<NewsModelDto, NewsModelDto, Long> {
 		List<NewsModelDto> readAll();
 
 		NewsModelDto readById(Long id);

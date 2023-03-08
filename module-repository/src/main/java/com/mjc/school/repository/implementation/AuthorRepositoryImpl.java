@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class AuthorModelRepositoryImpl implements BaseRepository<AuthorModel, Long> {
+public class AuthorRepositoryImpl implements BaseRepository<AuthorModel, Long> {
 		private final DataSource dataSource;
 		@Override
 		public List<AuthorModel> readAll() {

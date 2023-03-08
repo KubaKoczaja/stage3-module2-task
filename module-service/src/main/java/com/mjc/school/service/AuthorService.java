@@ -4,7 +4,7 @@ import com.mjc.school.service.dto.AuthorModelDto;
 
 import java.util.List;
 
-public interface AuthorModelService extends BaseService<AuthorModelDto, AuthorModelDto, Long> {
+public interface AuthorService extends BaseService<AuthorModelDto, AuthorModelDto, Long> {
 		List<AuthorModelDto> readAll();
 
 		AuthorModelDto readById(Long id);

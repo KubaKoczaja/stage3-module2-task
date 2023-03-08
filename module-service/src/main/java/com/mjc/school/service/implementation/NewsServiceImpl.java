@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.NewsModel;
-import com.mjc.school.service.NewsModelService;
+import com.mjc.school.service.NewsService;
 import com.mjc.school.service.dto.NewsModelDto;
 import com.mjc.school.service.exception.NoSuchEntityException;
 import com.mjc.school.service.mapper.NewsMapper;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NewsModelServiceImpl implements NewsModelService {
+public class NewsServiceImpl implements NewsService {
 		private final BaseRepository<NewsModel, Long> newsModelRepository;
 		private final NewsMapper newsMapper;
 

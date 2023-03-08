@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class NewsModelRepositoryImpl implements BaseRepository<NewsModel, Long> {
+public class NewsRepositoryImpl implements BaseRepository<NewsModel, Long> {
 		private final DataSource dataSource;
 		@Override
 		public List<NewsModel> readAll() {
